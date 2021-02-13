@@ -1,0 +1,50 @@
+{% load static %}
+<html>
+<head>
+<title>MY OWN PROJECT</title>
+<link rel="stylesheet" type="text/css" href="{%static 'css/projectapp.css' %}">
+</head>
+<body text='red'>
+	<div style="border:solid;width:18.5%;background-color: white">
+		<img src="{%static 'image/abc.png'%}" height="140px" width="180px">
+	</div>
+	<center>
+	<div style="border:solid;width:80%;background-color: white;float: right;margin-top: -160px;">
+		<h1>THE MESSAGE IS:{{msg}}</h1>
+		<h1>THE SERVER DATE TIME IS:{{date}}</h1>
+	</div>
+	<table>
+	<form method="POST">
+		<tr>{{ forms.as_p }} </tr>
+		<tr>{% csrf_token %} </tr>
+		<input type="SUBMIT" name="OK">
+	</form>
+	</table>
+	<h1>THE EMPLOYEE DETAILS ARE:</h1>
+	<table border="5">
+		{% if emp_list %}
+			<tr>
+				<td>ENAME</td>
+				<td>AGE</td>
+				<td>SALARY</td>
+				<td>PHONE_NO</td>
+				<td>CITY</td>
+				<td>EMAIL</td>
+			</tr>
+			{% for data in emp_list %}
+				<tr>
+					<td>{{ data.ENAME }}</td>
+					<td>{{ data.AGE }}</td>
+					<td>{{ data.SALARY }}</td>
+					<td>{{ data.PHONE_NO }}</td>
+					<td>{{ data.CITY }}</td>
+					<td>{{ data.EMAIL }}</td>
+				</tr>
+			{% endfor %}
+		{% else %}
+			<h1>RECORDS NOT FOUND</h1>
+		{% endif %}
+	</table>
+	</center>
+</body>
+</html>
